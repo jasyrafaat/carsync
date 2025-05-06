@@ -1,0 +1,7 @@
+{
+    "require": {
+        "mongodb/mongodb": "^1.20",
+        "php-mqtt/client": "^2.2",
+        "cboden/ratchet": "^0.4.4"
+    }
+}
