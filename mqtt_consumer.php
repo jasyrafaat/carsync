@@ -56,7 +56,7 @@ function connectAndSubscribe()
         echo "✅ Data forwarded to API: $response\n";
 
         // Send to WebSocket
-        $connector->connect('tcp://localhost:8082')->then(function(WebSocket $conn) use ($data) {
+       $connector->connect('tcp://maglev.proxy.rlwy.net:49247')->then(function(WebSocket $conn) use ($data) {
             $conn->send(json_encode([
                 'user' => $data['user'],
                 'speed' => $data['speed'] ?? null,
