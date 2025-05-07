@@ -46,7 +46,7 @@ function connectAndSubscribe()
         }
 
         // Send to API
-        $ch = curl_init('https://carsync-production.up.railway.app/sensor_api.php'); // الرابط الجديد
+        $ch = curl_init('http://localhost/carsync/sensor_api.php'); // الرابط الجديد
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
