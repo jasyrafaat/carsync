@@ -46,7 +46,7 @@ function connectAndSubscribe()
         }
 
         // Send to API
-        $ch = curl_init('http://localhost/carsync/sensor_api.php');
+        $ch = curl_init('https://carsync-production.up.railway.app/sensor_api.php'); // الرابط الجديد
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -56,7 +56,7 @@ function connectAndSubscribe()
         echo "✅ Data forwarded to API: $response\n";
 
         // Send to WebSocket
-       $connector->connect('tcp://maglev.proxy.rlwy.net:49247')->then(function(WebSocket $conn) use ($data) {
+        $connector->connect('tcp://maglev.proxy.rlwy.net:49247')->then(function(WebSocket $conn) use ($data) {
             $conn->send(json_encode([
                 'user' => $data['user'],
                 'speed' => $data['speed'] ?? null,
@@ -80,7 +80,7 @@ function connectAndSubscribe()
 
 while (true) {
     try {
-        $mqtt = connectAndSubscribe();
+        $mqtt connectAndSubscribe();
         $mqtt->loop(true);
     } catch (DataTransferException $e) {
         echo "⚠️ Connection lost: {$e->getMessage()}\n";

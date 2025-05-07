@@ -19,9 +19,10 @@ if (!$data || !isset($data['user'])) {
 $user = $data['user'];
 unset($data['user']);
 
+// استخدم MONGO_URI من متغيرات البيئة
+$mongoUri = getenv('MONGO_URI'); // تأكد من تعيين هذا المتغير في بيئة السيرفر
 try {
-    // Connect to MongoDB Atlas using your URI
-    $mongo = new Client("mongodb+srv://jasyrafaat:jasy2002@cluster0.ng0is.mongodb.net/?retryWrites=true&w=majority");
+    $mongo = new Client($mongoUri);
     $collection = $mongo->carsynce->sensors; // تأكد من اسم القاعدة الصحيحة
 
     $lastEntry = $collection->findOne([ 'user' => $user ], ['sort' => ['timestamp' => -1]]);

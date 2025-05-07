@@ -11,7 +11,8 @@ class WebSocketServer implements MessageComponentInterface {
 
     public function __construct() {
         $this->clients = new \SplObjectStorage();
-        $this->mongo = new Client("mongodb+srv://jasyrafaat:jasy2002@cluster0.ng0is.mongodb.net/?retryWrites=true&w=majority");
+        $mongoUri = getenv('MONGO_URI'); // استخدام MONGO_URI من متغيرات البيئة
+        $this->mongo = new Client($mongoUri);
     }
 
     public function onOpen(ConnectionInterface $conn) {
