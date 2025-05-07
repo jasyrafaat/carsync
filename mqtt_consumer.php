@@ -46,7 +46,7 @@ function connectAndSubscribe()
         }
 
         // Send to API
-        $ch = curl_init('http://localhost/carsync/sensor_api.php'); // الرابط الجديد
+        $ch = curl_init('http://localhost/carsync/sensor_api.php');
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
@@ -80,7 +80,7 @@ function connectAndSubscribe()
 
 while (true) {
     try {
-        $mqtt connectAndSubscribe();
+        $mqtt = connectAndSubscribe();
         $mqtt->loop(true);
     } catch (DataTransferException $e) {
         echo "⚠️ Connection lost: {$e->getMessage()}\n";
